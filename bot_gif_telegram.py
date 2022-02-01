@@ -12,7 +12,7 @@ import requests
 import json
 
 
-# bot initialization
+# bot initialization code
 bot = telegram.Bot(token='5259186766:AAEJbHxJs0P0_uhO3aOA1UMDnP4KRvHTdKA')
 updater = Updater(token='5259186766:AAEJbHxJs0P0_uhO3aOA1UMDnP4KRvHTdKA', use_context=True)
 dispatcher = updater.dispatcher
@@ -49,7 +49,7 @@ def get_stat(userId1):
 
 
 
-# set the apikey and limit for GIF API
+# making queries for GIF API with theme and quanitity
 def findGIF(lmt, search):
     apikey = "FIGH2RB8TW1A"  # test value
     search_term = search
@@ -70,7 +70,7 @@ def findGIF(lmt, search):
 
 
 
-
+# code for start command
 def start(update: Update, context: CallbackContext):
     msg1 = "Hello! This Gif bot. \n \n"
     msg2 = "To get GIFs, type: \n"
@@ -85,7 +85,7 @@ start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
 
 
-
+# code for get command
 def get(update: Update, context: CallbackContext):
     text_caps = context.args
     context.bot.send_message(chat_id=update.effective_chat.id, text= "Wait few seconds, please.")
@@ -111,7 +111,7 @@ get_handler = CommandHandler('get', get)
 dispatcher.add_handler(get_handler)
 
 
-
+# code for myhistory command
 def myhistory(update: Update, context: CallbackContext):
     text_caps = context.args
     userId = update.effective_user.id
@@ -128,7 +128,7 @@ dispatcher.add_handler(myhistory_handler)
 
 
 
-
+# code for handling texts and unknown commands
 def echo(update: Update, context: CallbackContext):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, only commands /get and /myhistory are allowed")
 
@@ -137,7 +137,7 @@ dispatcher.add_handler(echo_handler)
 
 
 
-
+# starting the bot
 updater.start_polling()
 
 
